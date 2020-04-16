@@ -5,14 +5,10 @@ using System.Text;
 
 namespace ConsoleApp5
 {
-    class Video
+    class Tag
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public Genre Genre { get; set; }
-        public int GenreId { get; set; }
-        public Classification Classification { get; set; }
+        public string Description { get; set; }
         public ICollection<VideoTags> VideoTags { get; set; } = new List<VideoTags>();
     }
 }

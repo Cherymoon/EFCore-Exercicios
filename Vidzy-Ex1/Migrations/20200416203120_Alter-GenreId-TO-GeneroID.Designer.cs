@@ -4,14 +4,16 @@ using ConsoleApp5;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsoleApp5.Migrations
 {
     [DbContext(typeof(VidzyContext))]
-    partial class VidzyContextModelSnapshot : ModelSnapshot
+    [Migration("20200416203120_Alter-GenreId-TO-GeneroID")]
+    partial class AlterGenreIdTOGeneroID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

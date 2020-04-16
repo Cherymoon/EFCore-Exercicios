@@ -4,14 +4,16 @@ using ConsoleApp5;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsoleApp5.Migrations
 {
     [DbContext(typeof(VidzyContext))]
-    partial class VidzyContextModelSnapshot : ModelSnapshot
+    [Migration("20200416202446_Add-Video-Annotations")]
+    partial class AddVideoAnnotations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,8 +43,7 @@ namespace ConsoleApp5.Migrations
                     b.Property<byte>("Classification")
                         .HasColumnType("tinyint");
 
-                    b.Property<int>("GenreId")
-                        .HasColumnName("GeneroID");
+                    b.Property<int>("GenreId");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -62,6 +63,7 @@ namespace ConsoleApp5.Migrations
                     b.HasOne("ConsoleApp5.Genre", "Genre")
                         .WithMany("Videos")
                         .HasForeignKey("GenreId")
+                        .HasConstraintName("GeneroID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

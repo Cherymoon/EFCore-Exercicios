@@ -19,7 +19,21 @@ namespace ConsoleApp5
         {
             modelBuilder.Entity<Video>()
                 .HasOne(p => p.Genre)
-                .WithMany(p => p.Videos);
+                .WithMany(p => p.Videos)
+                .HasForeignKey(p => p.GenreId);
+
+            modelBuilder.Entity<Video>()
+                .Property(p => p.GenreId)
+                .HasColumnName("GeneroID");
+
+            modelBuilder.Entity<Video>()
+                .Property(p => p.Name)
+                .IsRequired()
+                .HasMaxLength(255);
+              
+            modelBuilder.Entity<Video>()
+                .Property(p => p.Classification)
+                .HasColumnType("tinyint");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

@@ -8,13 +8,6 @@ namespace ConsoleApp5
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<VideoGenre> VideoGenres { get; set; }
-
-        public Genre(int id, string name)
-        {
-            Id = id;
-            Name = name;
-            VideoGenres = new List<VideoGenre>();
-        }
+        public ICollection<Video> Videos { get; set; } = new List<Video>();
     }
 }

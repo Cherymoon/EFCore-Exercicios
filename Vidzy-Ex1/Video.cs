@@ -9,14 +9,7 @@ namespace ConsoleApp5
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public virtual ICollection<VideoGenre> VideoGenres { get; set; }
-
-        public Video(int id, string name, DateTime releaseDate)
-        {
-            Id = id;
-            Name = name;
-            ReleaseDate = releaseDate;
-            VideoGenres = new List<VideoGenre>();
-        }
+        public Genre Genre { get; set; }
+        public Classification Classification { get; set; }
     }
 }

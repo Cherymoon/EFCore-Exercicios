@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsoleApp5.Migrations
 {
     [DbContext(typeof(VidzyContext))]
-    [Migration("20200414212326_add-migration Firt-Seed")]
-    partial class addmigrationFirtSeed
+    [Migration("20200416193321_second")]
+    partial class second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,13 +32,6 @@ namespace ConsoleApp5.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Progamming"
-                        });
                 });
 
             modelBuilder.Entity("ConsoleApp5.Video", b =>
@@ -47,54 +40,24 @@ namespace ConsoleApp5.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("GenreId");
+
                     b.Property<string>("Name");
 
                     b.Property<DateTime>("ReleaseDate");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Videos");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Learn C#",
-                            ReleaseDate = new DateTime(2020, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
-                });
-
-            modelBuilder.Entity("ConsoleApp5.VideoGenre", b =>
-                {
-                    b.Property<int>("VideoId");
-
-                    b.Property<int>("GenreId");
-
-                    b.HasKey("VideoId", "GenreId");
-
                     b.HasIndex("GenreId");
 
-                    b.ToTable("VideoGenre");
-
-                    b.HasData(
-                        new
-                        {
-                            VideoId = 1,
-                            GenreId = 1
-                        });
+                    b.ToTable("Videos");
                 });
 
-            modelBuilder.Entity("ConsoleApp5.VideoGenre", b =>
+            modelBuilder.Entity("ConsoleApp5.Video", b =>
                 {
                     b.HasOne("ConsoleApp5.Genre", "Genre")
-                        .WithMany("VideoGenres")
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ConsoleApp5.Video", "Video")
-                        .WithMany("VideoGenres")
-                        .HasForeignKey("VideoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("Videos")
+                        .HasForeignKey("GenreId");
                 });
 #pragma warning restore 612, 618
         }
